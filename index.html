@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Canales TDT en Vivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .player-wrapper {
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    h1 {
+      color: #0f0;
+    }
+    select {
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Canales TDT en Vivo</h1>
+
+  <select id="canalSelector">
+    <option value="https://rtvelivestream.akamaized.net/rtvesec/la1/la1_main.m3u8">La 1</option>
+    <option value="https://rtvelivestream.akamaized.net/rtvesec/la2/la2_main.m3u8">La 2</option>
+    <option value="https://rtvelivestream.akamaized.net/rtvesec/24h/24h_main.m3u8">Canal 24h</option>
+    <option value="https://rtvelivestream.akamaized.net/rtvesec/tve_int/tve_int_main.m3u8">TVE Internacional</option>
+    <option value="https://rtvelivestream.akamaized.net/rtvesec/tdp/tdp_main.m3u8">Teledeporte</option>
+  </select>
+
+  <div class="player-wrapper">
+    <div id="player"></div>
+  </div>
+
+  <script>
+    const player = new Clappr.Player({
+      source: document.getElementById("canalSelector").value,
+      parentId: "#player",
+      width: "100%",
+      height: 480,
+      autoPlay: true,
+      mediacontrol: { seekbar: "#0f0", buttons: "#0f0" }
+    });
+
+    document.getElementById("canalSelector").addEventListener("change", function () {
+      player.load(this.value);
+    });
+  </script>
+</body>
+</html>
